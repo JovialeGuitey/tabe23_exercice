@@ -1,314 +1,199 @@
+
 {
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": 1,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "import pandas as pd\n",
-    "import numpy as np\n",
-    "dt=pd.read_excel(\"database1.xlsx\")"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 2,
-   "metadata": {},
-   "outputs": [
-    {
-     "data": {
-      "text/plain": [
-       "{'name': 'json schema',\n",
-       " 'fields': [{'name': 'first_colonne',\n",
-       "   'type': 'string',\n",
-       "   'number': 4,\n",
-       "   'constraints': {'enum': ['cheddar', 'gouda', 'autre']}}]}"
-      ]
-     },
-     "execution_count": 2,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "#creation de schema json\n",
-    "{\n",
-    "    \"name\": \"json schema\",\n",
-    "    \"fields\": [\n",
-    "        {\n",
-    "            \"name\":  \"first_colonne\",\n",
-    "            \"type\": \"string\", \n",
-    "            \"number\": 4 ,\n",
-    "            \"constraints\": {\n",
-    "                \"enum\": [\"cheddar\", \"gouda\", \"autre\"]\n",
-    "            }\n",
-    "        }\n",
-    "    ]\n",
-    "}\n"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 4,
-   "metadata": {},
-   "outputs": [
-    {
-     "data": {
-      "text/plain": [
-       "{'name': 'json_schema',\n",
-       " 'title': 'Test Schema',\n",
-       " 'description': 'A test Schema',\n",
-       " 'fields': [{'name': 'HDI RANK',\n",
-       "   'title': 'Number of country',\n",
-       "   'type': 'string',\n",
-       "   'description': 'Numerotation des pays.'},\n",
-       "  {'name': 'COUNTRY',\n",
-       "   'title': 'Name_country',\n",
-       "   'type': 'string',\n",
-       "   'description': 'Nom des pays'},\n",
-       "  {'name': 'Total_primary_1990',\n",
-       "   'title': 'Total_primary_annee_1',\n",
-       "   'type': 'number',\n",
-       "   'description': 'valeur_prise'},\n",
-       "  {'name': 'Total_primary_2005',\n",
-       "   'title': 'Total_primary_annee_2',\n",
-       "   'type': 'number',\n",
-       "   'description': 'valeur_prise'},\n",
-       "  {'name': 'Coalc_1990',\n",
-       "   'title': 'Coalc_1990',\n",
-       "   'type': 'number',\n",
-       "   'description': 'valeur numerique'},\n",
-       "  {'name': 'Coalc_2005',\n",
-       "   'title': 'Coalc_2005',\n",
-       "   'type': 'number',\n",
-       "   'description': 'valeur numerique'},\n",
-       "  {'name': 'Oild_1990',\n",
-       "   'title': 'Oild_annee_1',\n",
-       "   'type': 'number',\n",
-       "   'description': 'valeur_prise'},\n",
-       "  {'name': 'Oild_2005',\n",
-       "   'title': 'Oild_annee_2',\n",
-       "   'type': 'number',\n",
-       "   'description': 'valeur_prise'},\n",
-       "  {'name': 'Natural_gras_1990',\n",
-       "   'title': 'Natural_gras_annee_1',\n",
-       "   'type': 'number',\n",
-       "   'description': 'valeur_prise'},\n",
-       "  {'name': 'Natural_gras_2005',\n",
-       "   'title': 'natural_annee_2',\n",
-       "   'type': 'number',\n",
-       "   'description': 'valeur_prise'},\n",
-       "  {'name': 'Hydro_solar_1990',\n",
-       "   'title': 'hydro_annee_1',\n",
-       "   'type': 'number',\n",
-       "   'description': 'valeur_prise'},\n",
-       "  {'name': 'Hydro_solar_2005',\n",
-       "   'title': 'hydro_annee_2',\n",
-       "   'type': 'number',\n",
-       "   'description': 'valeur_prise'},\n",
-       "  {'name': 'Biomass_and_wastee_1990',\n",
-       "   'title': 'Biomass_annee_1',\n",
-       "   'type': 'number',\n",
-       "   'description': 'valeur_prise'},\n",
-       "  {'name': 'Biomass_and_wastee_2005',\n",
-       "   'title': 'Biomass_annee_2',\n",
-       "   'type': 'number',\n",
-       "   'description': 'valeur_prise'},\n",
-       "  {'name': 'Nuclear_1990',\n",
-       "   'title': 'Nuclear_annee_1',\n",
-       "   'type': 'number',\n",
-       "   'description': 'valeur_prise'},\n",
-       "  {'name': 'Nuclear_2005',\n",
-       "   'title': 'Nuclear_annee_2',\n",
-       "   'type': 'number',\n",
-       "   'description': 'valeur_prise'},\n",
-       "  {'name': 'occupation_state_reliefs',\n",
-       "   'title': 'Occupation state reliefs',\n",
-       "   'type': 'array',\n",
-       "   'description': 'Array of the categories of reliefs / exemptions applied.',\n",
-       "   'constraints': {'enum': ['numbers',\n",
-       "     'names_country',\n",
-       "     'years',\n",
-       "     'value',\n",
-       "     'name_of_energi',\n",
-       "     'secand_name',\n",
-       "     'three_name',\n",
-       "     'four_name',\n",
-       "     'five_name',\n",
-       "     'six_name',\n",
-       "     'other']}}],\n",
-       " 'missingValues': ['NaN', '..']}"
-      ]
-     },
-     "execution_count": 4,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "{\n",
-    "    \"name\": \"json_schema\",\n",
-    "    \"title\": \"Test Schema\",\n",
-    "    \"description\": \"A test Schema\",\n",
-    "    \"fields\": [\n",
-    "        {\n",
-    "            \"name\": \"HDI RANK\",\n",
-    "            \"title\": \"Number of country\",\n",
-    "            \"type\": \"string\",\n",
-    "            \"description\": \"Numerotation des pays.\"\n",
-    "        },\n",
-    "        {\n",
-    "            \"name\": \"COUNTRY\",\n",
-    "            \"title\": \"Name_country\",\n",
-    "            \"type\": \"string\",\n",
-    "            \"description\": \"Nom des pays\"\n",
-    "        },\n",
-    "        {\n",
-    "            \"name\": \"Total_primary_1990\",\n",
-    "            \"title\": \"Total_primary_annee_1\",\n",
-    "            \"type\": \"number\",\n",
-    "            \"description\": \"valeur_prise\"\n",
-    "        },\n",
-    "        {\n",
-    "            \"name\":  \"Total_primary_2005\",\n",
-    "            \"title\": \"Total_primary_annee_2\",\n",
-    "            \"type\": \"number\",\n",
-    "            \"description\": \"valeur_prise\"\n",
-    "        },\n",
-    "        {\n",
-    "            \"name\": \"Coalc_1990\",\n",
-    "            \"title\":\"Coalc_1990\",\n",
-    "            \"type\": \"number\",\n",
-    "            \"description\": \"valeur numerique\"\n",
-    "        },\n",
-    "        {\n",
-    "            \"name\": \"Coalc_2005\",\n",
-    "            \"title\":\"Coalc_2005\",\n",
-    "            \"type\": \"number\",\n",
-    "            \"description\": \"valeur numerique\"\n",
-    "        },\n",
-    "        {\n",
-    "            \"name\": \"Oild_1990\",\n",
-    "            \"title\":\"Oild_annee_1\",\n",
-    "            \"type\": \"number\",\n",
-    "            \"description\": \"valeur_prise\"\n",
-    "        },\n",
-    "        {\n",
-    "            \"name\": \"Oild_2005\",\n",
-    "            \"title\":\"Oild_annee_2\",\n",
-    "            \"type\": \"number\",\n",
-    "            \"description\": \"valeur_prise\"\n",
-    "        },\n",
-    "        {\n",
-    "           \n",
-    "            \"name\": \"Natural_gras_1990\",\n",
-    "            \"title\":\"Natural_gras_annee_1\",\n",
-    "            \"type\": \"number\",\n",
-    "            \"description\": \"valeur_prise\"\n",
-    "        },\n",
-    "        {\n",
-    "            \"name\": \"Natural_gras_2005\",\n",
-    "            \"title\": \"natural_annee_2\",\n",
-    "            \"type\": \"number\",\n",
-    "            \"description\": \"valeur_prise\"\n",
-    "        },\n",
-    "        {\n",
-    "           \n",
-    "            \"name\":  \"Hydro_solar_1990\",\n",
-    "            \"title\": \"hydro_annee_1\",\n",
-    "            \"type\": \"number\",\n",
-    "            \"description\": \"valeur_prise\"\n",
-    "        },\n",
-    "        {\n",
-    "           \n",
-    "            \"name\": \"Hydro_solar_2005\",\n",
-    "            \"title\": \"hydro_annee_2\",\n",
-    "            \"type\": \"number\",\n",
-    "            \"description\": \"valeur_prise\"\n",
-    "        },\n",
-    "        {\n",
-    "            \n",
-    "            \"name\":  \"Biomass_and_wastee_1990\",\n",
-    "            \"title\": \"Biomass_annee_1\",\n",
-    "            \"type\": \"number\",\n",
-    "            \"description\": \"valeur_prise\"\n",
-    "        },\n",
-    "        {\n",
-    "           \n",
-    "            \"name\": \"Biomass_and_wastee_2005\",\n",
-    "            \"title\": \"Biomass_annee_2\",\n",
-    "            \"type\": \"number\",\n",
-    "            \"description\": \"valeur_prise\"\n",
-    "        },\n",
-    "        {\n",
-    "            \n",
-    "            \"name\":  \"Nuclear_1990\",\n",
-    "            \"title\": \"Nuclear_annee_1\",\n",
-    "            \"type\": \"number\",\n",
-    "            \"description\": \"valeur_prise\"\n",
-    "        },\n",
-    "        {\n",
-    "            \"name\": \"Nuclear_2005\",\n",
-    "            \"title\": \"Nuclear_annee_2\",\n",
-    "            \"type\": \"number\",\n",
-    "            \"description\": \"valeur_prise\"\n",
-    "        },\n",
-    "        {\n",
-    "            \"name\": \"occupation_state_reliefs\",\n",
-    "            \"title\": \"Occupation state reliefs\",\n",
-    "            \"type\": \"array\",\n",
-    "            \"description\": \"Array of the categories of reliefs / exemptions applied.\",\n",
-    "            \"constraints\": {\n",
-    "                \"enum\": [\n",
-    "                    \"numbers\", \n",
-    "                    \"names_country\", \n",
-    "                    \"years\", \n",
-    "                    \"value\", \n",
-    "                    \"name_of_energi\", \n",
-    "                    \"secand_name\",\n",
-    "                    \"three_name\", \n",
-    "                    \"four_name\", \n",
-    "                    \"five_name\", \n",
-    "                    \"six_name\", \n",
-    "                    \"other\"\n",
-    "                ]\n",
-    "            }\n",
-    "        }\n",
-    "    ],\n",
-    "    \"missingValues\": [\"NaN\", \"..\"]\n",
-    "}"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    " "
-   ]
-  }
+   "name" : "Data base ",
+   "title": " Base_de_donneees",
+   "description" :"Banque mondiale 2007, data base",
+    "fields" :  [
+
+
+        { 
+
+            "name": "HDI RANK",
+            "title":"HDI rank",
+            "type":"integer",
+            "description":"HDI rank est le numero des pris pas chaque pays",
+            "constraints":{
+			
+			    "mininum":1,
+				
+				"maximum":177,
+				
+			     "unique":true
+
+                         }
+
+        },
+
+        { 
+
+            "name": "COUNTRY",
+            "title":"Countrie",
+            "type":"string",
+            "description":"Nom des pays"
+             
+
+        },
+
+        { 
+
+            "name": "Total_primary_1990",
+            "title":"Total_energie_primaire_1990 ",
+            "type":"number",
+            "description" : "Total_energie_primaire ; annee 1990"
+            
+        },
+
+        { 
+
+            "name": "Total_primary_2005",
+            "title":"Total_energie_primaire_2005",
+            "type":"number",
+            "description" : "Total_energie_primaire ; annee 2005"
+				 
+            
+        },
+		
+        { 
+
+            "name": "Coalc_1990",
+            "title":"Coalc_1990",
+            "type":"number",
+            "description" : "Coalc_1990 ; annee 1990"
+				 
+            
+        },
+
+        { 
+
+            "name": "Coalc_2005",
+            "title":"Coalc_2005",
+            "type":"number",
+            "description" : "Coalc_2005 ; annee 2005"
+				 
+            
+        },
+
+        { 
+
+            "name": "Oild_1990",
+            "title":"Oild_1990",
+            "type":"number",
+            "description" : "oild_energie ; annee 1990"
+            
+
+		},
+        
+		{ 
+
+            "name": "Oild_2005",
+            "title":"Oild_2005",
+            "type":"number",
+            "description" : "oild_energie ; annee 2005"
+            
+        },
+		
+		{ 
+
+            "name": "Natural_gras_1990",
+            "title":"Natural_gras_1990",
+            "type":"number",
+            "description" : "Gaz_naturel ; annee 1990"
+            
+        },
+		
+		{ 
+
+            "name": "Natural_gras_2005",
+            "title":"Natural_gras_2005",
+            "type":"number",
+            "description" : "Gas_naturel ; annee 2005"
+            
+        },
+		
+		{ 
+
+            "name": "Hydro_solar_1990",
+            "title":"Hydro_solar_1990",
+            "type":"number",
+            "description" : "Energie_solaire; annee 1990"
+            
+        },
+ 
+        
+        {
+            "name": "Hydro_solar_2005",
+            "title":"High_technology_exports_2005",
+            "type":"number",
+            "description" : "Energie_solaire ; annee 2005"
+            
+        },
+	
+        {
+            "name": "Biomass_and_wastee_1990",
+            "title":"Biomass_and_wastee_1990",
+            "type":"number",
+            "description":" Biomas de L`eau ; annee 1990"
+
+
+        },
+    
+        {
+            "name": "Biomass_and_wastee_2005",
+            "title":"Biomass_and_wastee_2005",
+            "type":"number",
+            "description":" Biomas de l`eau ; annee 2005"
+
+
+        },
+    
+        {
+            "name": "Nuclear_1990",
+            "title":"Nuclear_1990",
+            "type":"number",
+            "description":" Energie_nucleaire ; annee 1990"
+
+
+        },
+    
+        {
+            "name": "Nuclear_2005",
+            "title":"Nuclear_2005",
+            "type":"number",
+            "description":" Energie_nucleaire ; annee 2005"
+          
+            
+        },
+        {
+
+
+
+            "name": "HDI NIVEAU_DEV",
+            "title":"Niveau_de_developpement",
+            "type":"array",
+            "description":"Niveau de developpement des pays ; High medium low have ",
+            "constraints":{  
+            
+                 "enum":[ 
+                
+                
+                "HIGH","MEDIUM","LOW"
+
+
+                       ]
+        }
+
+        }
+
  ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.7.3"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 2
+ 
+ "missingValues": [""]
+
+
+
+
+
+
+
+
+
 }
